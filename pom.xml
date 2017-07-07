@@ -6,7 +6,7 @@
 
     <groupId>com.codenjoy</groupId>
     <artifactId>codenjoy-builder</artifactId>
-    <version>1.0.11</version>
+    <version>1.0.12</version>
     <packaging>war</packaging>
 
     <properties>
@@ -26,9 +26,19 @@
             <id>codenjoy-releases</id>
             <url>https://github.com/codenjoyme/codenjoy-repo/raw/master/snapshots</url>
         </repository>
+        <repository>
+            <id>tetris-codenjoy</id>
+            <url>https://github.com/szelenin/mvn-repo/raw/master/snapshots</url>
+        </repository>
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>tetris-engine</artifactId>
+            <version>1.0.3-SNAPSHOT</version>
+        </dependency>
+<!--
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>sample-engine</artifactId>
@@ -134,6 +144,7 @@
             <artifactId>spacerace-engine</artifactId>
             <version>${project.version}</version>
         </dependency>
+-->
     </dependencies>
 
     <build>
@@ -230,6 +241,7 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <includes>resources/**/*,WEB-INF/classes/com/codenjoy/dojo/server/*</includes>
                                 </artifactItem>
+<!--
                                 <artifactItem>
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>a2048-engine</artifactId>
@@ -239,6 +251,17 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <includes>resources/**/*</includes>
                                 </artifactItem>
+-->
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>tetris-engine</artifactId>
+                                    <version>1.0.3-SNAPSHOT</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                                    <includes>resources/**/*</includes>
+                                </artifactItem>
+<!--
                                 <artifactItem>
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>a2048-extreme-engine</artifactId>
@@ -410,6 +433,7 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <includes>resources/**/*</includes>
                                 </artifactItem>
+-->
                             </artifactItems>
                         </configuration>
                     </execution>

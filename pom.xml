@@ -6,7 +6,7 @@
 
     <groupId>com.codenjoy</groupId>
     <artifactId>codenjoy-builder</artifactId>
-    <version>1.0.12</version>
+    <version>1.0.22</version>
     <packaging>war</packaging>
 
     <properties>
@@ -26,22 +26,18 @@
             <id>codenjoy-releases</id>
             <url>https://github.com/codenjoyme/codenjoy-repo/raw/master/snapshots</url>
         </repository>
-        <repository>
-            <id>tetris-codenjoy</id>
-            <url>https://github.com/szelenin/mvn-repo/raw/master/snapshots</url>
-        </repository>
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>tetris-engine</artifactId>
-            <version>1.0.3-SNAPSHOT</version>
-        </dependency>
-<!--
+        <!-- Games dependencies (put your game here) -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>sample-engine</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>sampletext-engine</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -81,6 +77,11 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>kata-engine</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>loderunner-engine</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -97,6 +98,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>snake-engine</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>snake-battle-engine</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -144,7 +150,6 @@
             <artifactId>spacerace-engine</artifactId>
             <version>${project.version}</version>
         </dependency>
--->
     </dependencies>
 
     <build>
@@ -223,6 +228,8 @@
                         </goals>
                         <configuration>
                             <artifactItems>
+
+                                <!-- Server resources -->
                                 <artifactItem>
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>${war.name}</artifactId>
@@ -234,6 +241,17 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>${project.groupId}</groupId>
+                                    <artifactId>engine</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                                    <includes>resources/**/*</includes>
+                                </artifactItem>
+
+                                <!-- Games resources (put your game here) -->
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
                                     <artifactId>sample-engine</artifactId>
                                     <version>${project.version}</version>
                                     <type>jar</type>
@@ -241,7 +259,15 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <includes>resources/**/*,WEB-INF/classes/com/codenjoy/dojo/server/*</includes>
                                 </artifactItem>
-<!--
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>sampletext-engine</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                                    <includes>resources/**/*,WEB-INF/classes/com/codenjoy/dojo/server/*</includes>
+                                </artifactItem>
                                 <artifactItem>
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>a2048-engine</artifactId>
@@ -251,17 +277,6 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <includes>resources/**/*</includes>
                                 </artifactItem>
--->
-                                <artifactItem>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>tetris-engine</artifactId>
-                                    <version>1.0.3-SNAPSHOT</version>
-                                    <type>jar</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
-                                    <includes>resources/**/*</includes>
-                                </artifactItem>
-<!--
                                 <artifactItem>
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>a2048-extreme-engine</artifactId>
@@ -318,6 +333,15 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>${project.groupId}</groupId>
+                                    <artifactId>kata-engine</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                                    <includes>resources/**/*</includes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
                                     <artifactId>loderunner-engine</artifactId>
                                     <version>${project.version}</version>
                                     <type>jar</type>
@@ -351,6 +375,15 @@
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <includes>resources/**/*</includes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>snake-battle-engine</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                                    <includes>resources/**/*,WEB-INF/classes/com/codenjoy/dojo/server/*</includes>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>${project.groupId}</groupId>
@@ -433,7 +466,6 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <includes>resources/**/*</includes>
                                 </artifactItem>
--->
                             </artifactItems>
                         </configuration>
                     </execution>
